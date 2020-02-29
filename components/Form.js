@@ -1,9 +1,6 @@
 import React from "react";
-
-import ReCAPTCHA from "react-google-recaptcha";
-
-const recaptcharef = React.createRef();
-
+import Reaptcha from "reaptcha";
+import Link from "next/link";
 const FormInput = ({ label, type, name }) => {
 	return (
 		<div className="form__group">
@@ -13,7 +10,7 @@ const FormInput = ({ label, type, name }) => {
 	);
 };
 
-const FormButton = ({ title }) => {
+const FormButton = ({ title, onClick }) => {
 	return (
 		<div className="form__group">
 			<button className="form__submit-btn" type="submit">
@@ -23,26 +20,65 @@ const FormButton = ({ title }) => {
 	);
 };
 
-const Form = ({ title, listItems, button, action }) => {
+const FormRedirect = ({ btn_2_title, btn_2_href }) => {
+	return (
+		<ul className="form__redirect">
+			<li className="form__redirect-item">
+				<Link href="/forgotpassword">
+					<a className="form__link">Forgot password ?</a>
+				</Link>
+			</li>
+			<li className="form__redirect-item">
+				<Link href={btn_2_href}>
+					<a className="form__link">{btn_2_title}</a>
+				</Link>
+			</li>
+		</ul>
+	);
+};
+
+const recaptcharef = React.createRef();
+const form = React.createRef();
+const Form = ({
+	title,
+	listItems,
+	button,
+	action,
+	btn_2_title,
+	btn_2_href
+}) => {
 	let elms = listItems.map((elm, i) => {
 		return <FormInput key={i} {...elm} />;
 	});
+
+	const onTriggerCaptcha = (event) => {
+		event.preventDefault();
+		recaptcharef.current.execute();
+	};
+
+	const onVerify = () => {
+		form.current.submit();
+	};
+
 	return (
 		<form
 			action={action}
 			className="form"
-			onSubmit={() => recaptcharef.current.execute()}
-			method="get"
+			method="post"
+			ref={form}
+			onSubmit={onTriggerCaptcha}
 		>
 			<div className="u-center-text">
 				<h3 className="form__title">{title}</h3>
 			</div>
 			{elms}
-			<ReCAPTCHA
+			<Reaptcha
 				ref={recaptcharef}
+				sitekey={process.env.GOOGLE_SITE_KEY}
+				onVerify={onVerify}
 				size="invisible"
-				sitekey={"6LdywtsUAAAAAK4wZAkQFEjmJdgbEekzWXi2rEqa"}
 			/>
+			<FormRedirect btn_2_href={btn_2_href} btn_2_title={btn_2_title} />
 			<FormButton {...button} />
 		</form>
 	);

@@ -6,5 +6,8 @@ module.exports = withSass({
 	},
 	cssLoaderOptions: {
 		localIdentName: "[local]"
+	},
+	env: {
+		GOOGLE_SITE_KEY: process.env.GOOGLE_SITE_KEY
 	}
 });

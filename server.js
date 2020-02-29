@@ -8,7 +8,11 @@ const MongoDBStore = require("connect-mongodb-session")(expressSession);
 
 const mongoose = require("mongoose");
 
-const passport = require("passport");
+const authRoute = require("./routes/auth");
+
+const bodyParser = require("body-parser");
+
+const flash = require("connect-flash");
 
 require("dotenv").config();
 
@@ -51,6 +55,13 @@ connectWithRetry();
 app.prepare().then(() => {
 	const server = express();
 
+	// body parser
+	server.use(bodyParser.json());
+	server.use(bodyParser.urlencoded({ extended: true }));
+
+	// flash
+	server.use(flash());
+
 	// session config
 
 	server.use(
@@ -64,18 +75,9 @@ app.prepare().then(() => {
 		})
 	);
 
-	// use passport middleware
-	server.use(passport.initialize());
-	server.use(passport.session());
+	// route use
+	server.use("/auth", authRoute);
 
-	const p = require("./middlewares/passport");
-	server.get(
-		"/api",
-		p.authenticate("local", {
-			successReturnToOrRedirect: "/",
-			failureRedirect: "/login"
-		})
-	);
 	server.all("*", (req, res) => {
 		return handle(req, res);
 	});

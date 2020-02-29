@@ -1,0 +1,3 @@
+// validate
+exports.USERNAME_LENGTH_ERROR = "SAI DO DAI TK";
+exports.PASSWORD_LENGTH_ERROR = "SAI DO DAI TK";
