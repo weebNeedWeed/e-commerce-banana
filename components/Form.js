@@ -20,12 +20,14 @@ const FormButton = ({ title, onClick }) => {
 	);
 };
 
-const FormRedirect = ({ btn_2_title, btn_2_href }) => {
+const FormRedirect = ({ btn_2_title, btn_2_href, btn_1_title, btn_1_href }) => {
 	return (
 		<ul className="form__redirect">
 			<li className="form__redirect-item">
-				<Link href="/forgotpassword">
-					<a className="form__link">Forgot password ?</a>
+				<Link href={btn_1_href ? btn_1_href : "/forgotpassword"}>
+					<a className="form__link">
+						{btn_1_title ? btn_1_title : "Forgot password ?"}
+					</a>
 				</Link>
 			</li>
 			<li className="form__redirect-item">
@@ -45,7 +47,9 @@ const Form = ({
 	button,
 	action,
 	btn_2_title,
-	btn_2_href
+	btn_2_href,
+	btn_1_title,
+	btn_1_href
 }) => {
 	let elms = listItems.map((elm, i) => {
 		return <FormInput key={i} {...elm} />;
@@ -78,7 +82,12 @@ const Form = ({
 				onVerify={onVerify}
 				size="invisible"
 			/>
-			<FormRedirect btn_2_href={btn_2_href} btn_2_title={btn_2_title} />
+			<FormRedirect
+				btn_2_href={btn_2_href}
+				btn_2_title={btn_2_title}
+				btn_1_href={btn_1_href}
+				btn_1_title={btn_1_title}
+			/>
 			<FormButton {...button} />
 		</form>
 	);

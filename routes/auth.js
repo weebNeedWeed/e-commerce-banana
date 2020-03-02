@@ -13,5 +13,12 @@ router.post(
 	authValidate.registerValidate,
 	authController.postRegister
 );
+router.post("/forgotpassword", authController.postForgotPassword);
+router.post("/codecheck", authController.postCodeCheck);
+router.post(
+	"/createnewpassword",
+	authValidate.validateCreateNewPassword,
+	authController.postCreateNewPassword
+);
 
 module.exports = router;
