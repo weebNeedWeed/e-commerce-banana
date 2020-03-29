@@ -1,0 +1,39 @@
+.category {
+    flex: 1;
+    border: .1rem solid rgba($color-black, .5);
+    background-color: rgba($color: $color-white, $alpha: .5);
+    padding-bottom: 2rem;
+    &__heading {
+        border-bottom: .2rem solid rgba($color-black, .8);
+        padding-bottom: .5rem;
+        font-size: 200%;
+    }
+    &__item {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        margin-top: 1rem;
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+    &__item &__item {
+        margin-left: 10%;
+    }
+    &__link {
+        font-size: 150%;
+    }
+    &__dropdown {
+        margin-right: .5rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: 250%;
+        &:hover {
+            transition: all .2s;
+            transform: scale(1.2);
+            color: red;
+        }
+    }
+}

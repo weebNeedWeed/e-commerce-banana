@@ -20,5 +20,6 @@ router.post(
 	authValidate.validateCreateNewPassword,
 	authController.postCreateNewPassword
 );
+router.post("/tokencheck", authController.postAuthToken);
 
 module.exports = router;

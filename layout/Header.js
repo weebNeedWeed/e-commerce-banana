@@ -2,6 +2,10 @@ import NavBar from "./NavBar";
 
 const list = [
 	{
+		title: "logu",
+		href: "/logu"
+	},
+	{
 		title: "login",
 		href: "/login"
 	},
@@ -10,8 +14,8 @@ const list = [
 		href: "/register"
 	},
 	{
-		title: "home",
-		href: "/"
+		title: "shop",
+		href: "/shop"
 	}
 ];
 

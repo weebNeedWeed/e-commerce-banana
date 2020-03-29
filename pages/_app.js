@@ -1,17 +1,14 @@
-import { Fragment } from "react";
-
 import Header from "./../layout/Header";
-
-import "./../styles/sass/main.scss";
 import Footer from "../layout/Footer";
-
+import "./../styles/sass/main.scss";
+import React from "react";
 const MyApp = function({ Component, pageProps }) {
 	return (
-		<Fragment>
+		<div>
 			<Header />
 			<Component {...pageProps} />
 			<Footer />
-		</Fragment>
+		</div>
 	);
 };
 

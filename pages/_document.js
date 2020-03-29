@@ -24,6 +24,10 @@ export default class extends Document {
 						type="image/png"
 						href="/images/banana_icon.png"
 					/>
+					<script
+						src="https://kit.fontawesome.com/86fe697766.js"
+						crossOrigin="anonymous"
+					></script>
 				</Head>
 				<body>
 					<Main />

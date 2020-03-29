@@ -25,7 +25,10 @@ exports.postLogin = async (req, res) => {
 			if (compareerr) throw compareerr;
 			return;
 		}
-		req.session.user = user;
+		res.cookie("token", user.token, {
+			expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+		});
+
 		return res.redirect("/");
 	});
 };
@@ -53,7 +56,9 @@ exports.postRegister = async (req, res) => {
 			money: 0,
 			avatar_link: ""
 		});
+		await newUser.createToken();
 		await newUser.save();
+
 		err.push("dang ky thanh cong vui long dang nhap");
 		try {
 			mailer.sendMail(email, "", "dang ky thanh cong", "");
@@ -195,5 +200,23 @@ exports.postCreateNewPassword = async (req, res) => {
 		req.flash("error", err);
 		res.redirect("/login");
 	});
+	return;
+};
+exports.postAuthToken = async (req, res) => {
+	const { token } = req.body;
+	const data = {
+		match: false
+	};
+	if (!token) {
+		res.status(200).send(data);
+		return;
+	}
+	const user = await users.findOne({ token });
+	if (user === null) {
+		res.status(200).json(data);
+		return;
+	}
+	data.match = true;
+	res.status(200).json(data);
 	return;
 };

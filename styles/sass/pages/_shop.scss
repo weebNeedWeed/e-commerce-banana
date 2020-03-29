@@ -1,0 +1,22 @@
+.shop-container {
+    padding: 0 5rem;
+}
+
+.shop-buying {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+
+.list-items {
+    flex: 4;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 4rem;
+}
+
+.empty-list-product {
+    height: 80vh;
+    font-size: 400%;
+}

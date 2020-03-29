@@ -10,7 +10,7 @@ module.exports = {
 				allowEmptyCatch: true
 			}
 		],
-		"no-console": "warn",
+		"no-console": "off",
 		"no-useless-escape": "off",
 		"no-useless-catch": "off",
 		"no-fallthrough": "off",
@@ -21,7 +21,8 @@ module.exports = {
 			}
 		],
 		"no-unreachable": "off",
-		"no-constant-condition": "off"
+		"no-constant-condition": "off",
+		"no-mixed-spaces-and-tabs": "off"
 	},
 	env: {
 		browser: true,

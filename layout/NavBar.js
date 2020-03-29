@@ -1,23 +1,28 @@
+import React from "react";
+
 import Link from "next/link";
 
 import { useRouter } from "next/router";
 
-const _NavBarItem = ({ href, title }) => {
+const NavBarItem = ({ href, title, reload }) => {
 	const router = useRouter();
 	let str = "";
 	if (router.pathname === href) str = " navbar__link--active";
-	return (
-		<li className="navbar__item">
-			<Link href={href}>
-				<a className={"navbar__link" + str}>{title.toLowerCase()}</a>
-			</Link>
-		</li>
+	const link = reload ? (
+		<a href={href} className={"navbar__link" + str}>
+			{title.toLowerCase()}
+		</a>
+	) : (
+		<Link href={href}>
+			<a className={"navbar__link" + str}>{title.toLowerCase()}</a>
+		</Link>
 	);
+	return <li className="navbar__item">{link}</li>;
 };
 
 const NavBar = ({ list }) => {
 	const elms = list.map((elm, i) => {
-		return <_NavBarItem {...elm} key={i} />;
+		return <NavBarItem {...elm} key={i} />;
 	});
 	return (
 		<nav className="navbar">

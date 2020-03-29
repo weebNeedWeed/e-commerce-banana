@@ -9,6 +9,7 @@ const MongoDBStore = require("connect-mongodb-session")(expressSession);
 const mongoose = require("mongoose");
 
 const authRoute = require("./routes/auth");
+const apiRoute = require("./routes/api");
 
 const bodyParser = require("body-parser");
 
@@ -75,8 +76,12 @@ app.prepare().then(() => {
 		})
 	);
 
+	// cookie
+	server.use(require("cookie-parser")("key"));
+
 	// route use
 	server.use("/auth", authRoute);
+	server.use("/api", apiRoute);
 
 	server.all("*", (req, res) => {
 		return handle(req, res);
