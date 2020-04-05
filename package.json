@@ -28,6 +28,7 @@
         "next": "^9.3.2",
         "next-compose-plugins": "^2.2.0",
         "next-cookies": "^2.0.3",
+        "nextjs-progressbar": "0.0.4",
         "node-sass": "^4.13.1",
         "nodemailer": "^6.4.3",
         "react": "16.12.0",

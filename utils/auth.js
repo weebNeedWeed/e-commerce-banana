@@ -11,7 +11,7 @@ export const auth = async (ctx) => {
 	const { match } = await callApi("http://localhost:3000/auth/tokencheck", {
 		method: "post",
 		body: JSON.stringify({ token }),
-		headers: { "content-type": "application/json" }
+		headers: { "content-type": "application/json" },
 	});
 	if (ctx.req && (!token || !match)) {
 		ctx.res.status(302);

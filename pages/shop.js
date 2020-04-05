@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 
 import Search from "./../components/Search";
-
 import Category from "./../components/Category";
-
 import ShopItem from "./../components/ShopItem";
-
 import Pagination from "./../components/Pagination";
 
 import callApi from "./../utils/callApi";
@@ -54,9 +51,7 @@ const Page = function(props) {
 	};
 
 	const cateDisplay =
-		props.cateDisplay !== null ? (
-			<Category list={props.cateDisplay} />
-		) : null;
+		props.cateDisplay !== null ? <Category list={props.cateDisplay} /> : null;
 
 	const emptyListProduct = (
 		<div className="empty-list-product">khong co sp de hien thi</div>
@@ -103,7 +98,7 @@ Page.getInitialProps = async (ctx) => {
 	const keywordQuery = query.keyword;
 	try {
 		cateDisplay = await callApi("http://localhost:3000/api/category", {
-			method: "GET"
+			method: "GET",
 		});
 		cateDisplay = cateDisplay.filter((elm) => {
 			return elm.level === 0;
@@ -116,12 +111,12 @@ Page.getInitialProps = async (ctx) => {
 		listProduct = await callApi(
 			`http://localhost:3000/api/product?${pageUrl}${cateUrl}${keywordUrl}`,
 			{
-				method: "GET"
-			}
+				method: "GET",
+			},
 		);
 
 		pageCount = await callApi(
-			"http://localhost:3000/api/product?pagecount=true"
+			"http://localhost:3000/api/product?pagecount=true",
 		);
 		pageCount = parseInt(pageCount.count, 10);
 	} catch (err) {
@@ -133,7 +128,7 @@ Page.getInitialProps = async (ctx) => {
 	return {
 		cateDisplay,
 		listProduct,
-		pageCount
+		pageCount,
 	};
 };
 
