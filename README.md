@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
+![text](https://badg9.herokuapp.com/weebNeedWeed/e-commerce-banana)
+
 ## Getting Started
 
 First, run the development server:
